@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useApp } from '../AppContext';
 import './Auth.css';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://yogi-prototype-backend-production.up.railway.app';
 
 export default function Login() {
   const [email, setEmail] = useState('');

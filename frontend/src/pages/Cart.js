@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useApp } from '../AppContext';
 import './Cart.css';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://yogi-prototype-backend-production.up.railway.app';
 
 export default function Cart() {
   const { cart, updateCartQuantity, removeFromCart, clearCart, token } = useApp();

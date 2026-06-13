@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../AppContext';
 import './Products.css';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = 'https://yogi-prototype-backend-production.up.railway.app';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
