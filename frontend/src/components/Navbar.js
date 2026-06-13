@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/products" className="navbar-brand">
-          🛍️ Yogi Shop
+          <span style={{ fontSize: '28px', marginRight: '8px' }}>🛒</span>Yogi Shop
         </Link>
 
         <div className="navbar-menu">
