@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useApp } from '../AppContext';
 import './AdminDashboard.css';
 
@@ -13,7 +13,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState('');
   const { token } = useApp();
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`${API_URL}/products`, {
@@ -26,9 +26,9 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`${API_URL}/admin/users`, {
@@ -41,9 +41,9 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`${API_URL}/orders/admin/all`, {
@@ -56,13 +56,13 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     if (tab === 'products') fetchProducts();
     else if (tab === 'users') fetchUsers();
     else if (tab === 'orders') fetchOrders();
-  }, [tab, token]);
+  }, [tab, fetchProducts, fetchUsers, fetchOrders]);
 
   return (
     <div className="admin-dashboard">
