@@ -10,16 +10,6 @@ import Orders from './pages/Orders';
 import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 
-function ProtectedRoute({ children }) {
-  const { token } = useApp();
-  return token ? children : <Navigate to="/login" />;
-}
-
-function AdminRoute({ children }) {
-  const { user, token } = useApp();
-  return token && user?.is_admin ? children : <Navigate to="/products" />;
-}
-
 function AppRoutes() {
   const { user, token } = useApp();
 

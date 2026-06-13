@@ -12,25 +12,25 @@ export default function Orders() {
   const { token } = useApp();
 
   useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await fetch(`${API_URL}/orders`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch orders');
+
+        const data = await res.json();
+        setOrders(data);
+      } catch (err) {
+        setError('Failed to load orders');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchOrders();
-  }, []);
-
-  const fetchOrders = async () => {
-    try {
-      const res = await fetch(`${API_URL}/orders`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (!res.ok) throw new Error('Failed to fetch orders');
-
-      const data = await res.json();
-      setOrders(data);
-    } catch (err) {
-      setError('Failed to load orders');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [token]);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -109,25 +109,25 @@ function OrderDetails({ order, token }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchOrderDetails = async () => {
+      try {
+        const res = await fetch(`${API_URL}/orders/${order.id}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch order details');
+
+        const data = await res.json();
+        setItems(data.items);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchOrderDetails();
-  }, []);
-
-  const fetchOrderDetails = async () => {
-    try {
-      const res = await fetch(`${API_URL}/orders/${order.id}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (!res.ok) throw new Error('Failed to fetch order details');
-
-      const data = await res.json();
-      setItems(data.items);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [order.id, token]);
 
   if (loading) return <div className="order-items-loading">Loading items...</div>;
 

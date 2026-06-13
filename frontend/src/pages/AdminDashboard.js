@@ -13,12 +13,6 @@ export default function AdminDashboard() {
   const [error, setError] = useState('');
   const { token } = useApp();
 
-  useEffect(() => {
-    if (tab === 'products') fetchProducts();
-    else if (tab === 'users') fetchUsers();
-    else if (tab === 'orders') fetchOrders();
-  }, [tab]);
-
   const fetchProducts = async () => {
     setLoading(true);
     try {
@@ -63,6 +57,12 @@ export default function AdminDashboard() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (tab === 'products') fetchProducts();
+    else if (tab === 'users') fetchUsers();
+    else if (tab === 'orders') fetchOrders();
+  }, [tab, token]);
 
   return (
     <div className="admin-dashboard">

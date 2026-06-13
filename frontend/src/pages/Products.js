@@ -11,25 +11,25 @@ export default function Products() {
   const { token, addToCart } = useApp();
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${API_URL}/products`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch products');
+
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        setError('Failed to load products');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch(`${API_URL}/products`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (!res.ok) throw new Error('Failed to fetch products');
-
-      const data = await res.json();
-      setProducts(data);
-    } catch (err) {
-      setError('Failed to load products');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [token]);
 
   if (loading) return <div className="loading">Loading products...</div>;
   if (error) return <div className="error-message">{error}</div>;
