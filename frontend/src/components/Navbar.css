@@ -1,0 +1,108 @@
+.navbar {
+  background: #333;
+  color: white;
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #ff9500;
+}
+
+.cart-count {
+  background: #ff9500;
+  color: black;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.nav-link.admin {
+  color: #ff9500;
+  font-weight: bold;
+}
+
+.user-section {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border-left: 1px solid #555;
+  padding-left: 20px;
+}
+
+.user-status {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.logout-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ff5252;
+}
+
+@media (max-width: 768px) {
+  .navbar-menu {
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .user-section {
+    flex-direction: column;
+    gap: 10px;
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid #555;
+    padding-top: 10px;
+  }
+
+  .navbar-container {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+}
